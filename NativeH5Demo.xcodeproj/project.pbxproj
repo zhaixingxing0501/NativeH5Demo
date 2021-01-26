@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8188FE7F5541D41B935C65EB /* Pods_NativeH5Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78CA4EFE05541588A78B536D /* Pods_NativeH5Demo.framework */; };
+		9CBFFB6025C01FEB00919141 /* BaseWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CBFFB5F25C01FEB00919141 /* BaseWKWebViewController.m */; };
 		9CC5353925B7D3B10021E7CC /* NSString+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CC5353825B7D3B10021E7CC /* NSString+AES.m */; };
 		CE402E2E25AFDB07002A1C20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE402E2D25AFDB07002A1C20 /* AppDelegate.m */; };
 		CE402E3125AFDB07002A1C20 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE402E3025AFDB07002A1C20 /* SceneDelegate.m */; };
@@ -17,13 +18,13 @@
 		CE402E3C25AFDB08002A1C20 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE402E3A25AFDB08002A1C20 /* LaunchScreen.storyboard */; };
 		CE402E3F25AFDB08002A1C20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE402E3E25AFDB08002A1C20 /* main.m */; };
 		CE402E4B25AFE28C002A1C20 /* Request.m in Sources */ = {isa = PBXBuildFile; fileRef = CE402E4A25AFE28C002A1C20 /* Request.m */; };
-		CE402E7C25AFE991002A1C20 /* BaseWKWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE402E7B25AFE991002A1C20 /* BaseWKWebViewController.m */; };
 		CE402E8425AFEBE8002A1C20 /* NSString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = CE402E8325AFEBE8002A1C20 /* NSString+Extension.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3C3EAFE794E8565B500583EF /* Pods-NativeH5Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeH5Demo.debug.xcconfig"; path = "Target Support Files/Pods-NativeH5Demo/Pods-NativeH5Demo.debug.xcconfig"; sourceTree = "<group>"; };
 		78CA4EFE05541588A78B536D /* Pods_NativeH5Demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NativeH5Demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CBFFB5F25C01FEB00919141 /* BaseWKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWKWebViewController.m; sourceTree = "<group>"; };
 		9CC5353725B7D3B10021E7CC /* NSString+AES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+AES.h"; sourceTree = "<group>"; };
 		9CC5353825B7D3B10021E7CC /* NSString+AES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+AES.m"; sourceTree = "<group>"; };
 		CE402E2925AFDB07002A1C20 /* NativeH5Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NativeH5Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,7 +42,6 @@
 		CE402E4925AFE28C002A1C20 /* Request.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Request.h; sourceTree = "<group>"; };
 		CE402E4A25AFE28C002A1C20 /* Request.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Request.m; sourceTree = "<group>"; };
 		CE402E7A25AFE991002A1C20 /* BaseWKWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseWKWebViewController.h; sourceTree = "<group>"; };
-		CE402E7B25AFE991002A1C20 /* BaseWKWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseWKWebViewController.m; sourceTree = "<group>"; };
 		CE402E8225AFEBE8002A1C20 /* NSString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Extension.h"; sourceTree = "<group>"; };
 		CE402E8325AFEBE8002A1C20 /* NSString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Extension.m"; sourceTree = "<group>"; };
 		D4B537A840E4ECF07D9F7D72 /* Pods-NativeH5Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NativeH5Demo.release.xcconfig"; path = "Target Support Files/Pods-NativeH5Demo/Pods-NativeH5Demo.release.xcconfig"; sourceTree = "<group>"; };
@@ -117,7 +117,7 @@
 				CE402E8225AFEBE8002A1C20 /* NSString+Extension.h */,
 				CE402E8325AFEBE8002A1C20 /* NSString+Extension.m */,
 				CE402E7A25AFE991002A1C20 /* BaseWKWebViewController.h */,
-				CE402E7B25AFE991002A1C20 /* BaseWKWebViewController.m */,
+				9CBFFB5F25C01FEB00919141 /* BaseWKWebViewController.m */,
 				CE402E3525AFDB07002A1C20 /* Main.storyboard */,
 				CE402E3825AFDB08002A1C20 /* Assets.xcassets */,
 				CE402E3A25AFDB08002A1C20 /* LaunchScreen.storyboard */,
@@ -253,9 +253,9 @@
 				CE402E4B25AFE28C002A1C20 /* Request.m in Sources */,
 				CE402E2E25AFDB07002A1C20 /* AppDelegate.m in Sources */,
 				CE402E3F25AFDB08002A1C20 /* main.m in Sources */,
-				CE402E7C25AFE991002A1C20 /* BaseWKWebViewController.m in Sources */,
 				9CC5353925B7D3B10021E7CC /* NSString+AES.m in Sources */,
 				CE402E3125AFDB07002A1C20 /* SceneDelegate.m in Sources */,
+				9CBFFB6025C01FEB00919141 /* BaseWKWebViewController.m in Sources */,
 				CE402E8425AFEBE8002A1C20 /* NSString+Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

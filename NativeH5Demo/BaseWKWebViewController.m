@@ -109,8 +109,8 @@
     NSLog(@"当前页面地址%@", self.wkWebView.URL.absoluteString);
 
     NSDictionary *param = @{
-        @"app_id": @"2a10fa39e3546d256bf993f546b6d73b",
-        @"secret": @"fdbab8561f7138914179b773a732e1aa"
+        @"app_id": @"b371a642b6c5aa3ad0c0744462b792cf",
+        @"secret": @"418efe81b1af6f342b5f12e9c5854c7a"
     };
 
     NSString *paramString = [param jsonString];

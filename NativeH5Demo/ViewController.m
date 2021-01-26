@@ -45,8 +45,8 @@
 }
 
 - (IBAction)buttonAction:(UIButton *)sender {
-    [self testPay];
-//    [self openH5];
+//    [self testPay];
+    [self openH5];
 //    [self testOpenMiniProgram];
 }
 
@@ -64,7 +64,7 @@
         @"payment_callback_url": @"http://tyb_ci_api_one.nucarf.cn/station/#/order/detail?action=callback",
         @"notify_url": @"1",
     };
-
+    
     [Request post:url parameters:param success:^(id _Nonnull responseObject) {
         NSString *webUrl = [responseObject[@"data"] objectForKey:@"cashier_url"];
 
@@ -93,7 +93,7 @@
 
 - (void)openH5 {
     BaseWKWebViewController *vc = [[BaseWKWebViewController alloc] init];
-    vc.urlStr = @"http://tyb_ci_api_one.nucarf.cn//station/#/order/detail?&pay_state=paid&order_no=2021011411382310255995";
+    vc.urlStr = @"http://tyb-qa-api.nucarf.cn/station/#/oilstation?mobile=mPGlGV0YXIBCnj76Pgl%2BaA%3D%3D&latitude=23.106013&longitude=113.379406";
 //    vc.urlStr = @"http://33l38x6599.zicp.vip:28775/#/?pay_state=paid&order_no=2021011411382310255995";
     [self.navigationController pushViewController:vc animated:YES];
 }
