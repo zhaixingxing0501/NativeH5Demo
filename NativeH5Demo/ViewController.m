@@ -14,6 +14,12 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *URLTextField;
 
+
+@property (nonatomic, strong) NSString *url;
+@property (nonatomic, strong) NSString *app_id;
+@property (nonatomic, strong) NSString *secret;
+
+
 @end
 
 @implementation ViewController
@@ -22,26 +28,23 @@
     [super viewDidLoad];
     self.title = @"小程序调试";
     // Do any additional setup after loading the view.
-
-//    NSString *mobile = @"18222116409";
-//    NSString *keyStr = @"ZsHkkqm6lsGwUP4c";
-//    NSString *res1 = [mobile AES256EncryptKey:keyStr];
-//    NSString *secret = @"UtIB2fw3G8/FkpeABgRy9Q==";
-//    NSString *res = [secret AES256DecryptKey:keyStr];
+    
+    
+//    NSString *mobile1 = @"18222116409";
+//    NSString *keyStr1 = @"fdbab8561f7138914179b773a732e1aa";
+//    NSString *res11 = [mobile1 AES256EncryptKey:keyStr1];
+//    NSString *secret1 = @"N/7pJLohSGzlWQIgLDxwiQ==";
 //
+//    if ([res11 isEqualToString:secret1]) {
+//        NSLog(@"相同");
+//    }
+//    NSString *res12 = [secret1 AES256DecryptKey:keyStr1];
     
     
-    NSString *mobile1 = @"18222116409";
-    NSString *keyStr1 = @"fdbab8561f7138914179b773a732e1aa";
-    NSString *res11 = [mobile1 AES256EncryptKey:keyStr1];
-    NSString *secret1 = @"N/7pJLohSGzlWQIgLDxwiQ==";
-    
-    if ([res11 isEqualToString:secret1]) {
-        NSLog(@"相同");
-    }
-    NSString *res12 = [secret1 AES256DecryptKey:keyStr1];
-    
-    
+    self.url = @"http://tyb-qa-api.nucarf.cn/station/#/oilstation?mobile=spuDgO4vLFZCSFgXRNM4mw%3D%3D&latitude=39.85856&longitude=116.28616";
+    self.app_id = @"b371a642b6c5aa3ad0c0744462b792cf";
+    self.secret = @"418efe81b1af6f342b5f12e9c5854c7a";
+
 }
 
 - (IBAction)buttonAction:(UIButton *)sender {
@@ -93,8 +96,9 @@
 
 - (void)openH5 {
     BaseWKWebViewController *vc = [[BaseWKWebViewController alloc] init];
-    vc.urlStr = @"http://tyb-qa-api.nucarf.cn/station/#/oilstation?mobile=mPGlGV0YXIBCnj76Pgl%2BaA%3D%3D&latitude=23.106013&longitude=113.379406";
-//    vc.urlStr = @"http://33l38x6599.zicp.vip:28775/#/?pay_state=paid&order_no=2021011411382310255995";
+    vc.urlStr = self.url;
+    vc.app_id = self.app_id;
+    vc.secret = self.secret;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

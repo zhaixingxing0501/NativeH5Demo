@@ -50,8 +50,14 @@
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonSystemItemClose target:self action:@selector(backAction:)];
     self.navigationItem.leftItemsSupplementBackButton = YES;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"刷新" style:UIBarButtonSystemItemDone target:self action:@selector(refreshAction:)];
+    self.navigationItem.leftItemsSupplementBackButton = YES;
 }
 
+- (void)refreshAction:(id)sender {
+    [self.wkWebView reload];
+}
 - (void)backAction:(id)sender {
     if ([self.wkWebView canGoBack]) {
         [self.wkWebView goBack];
@@ -109,15 +115,15 @@
     NSLog(@"当前页面地址%@", self.wkWebView.URL.absoluteString);
 
     NSDictionary *param = @{
-        @"app_id": @"b371a642b6c5aa3ad0c0744462b792cf",
-        @"secret": @"418efe81b1af6f342b5f12e9c5854c7a"
+        @"app_id": self.app_id,
+        @"secret":self.secret
     };
 
     NSString *paramString = [param jsonString];
     NSString *js = [NSString stringWithFormat:@"tybRegisterData('%@')", paramString];
 
     [self.wkWebView evaluateJavaScript:js completionHandler:^(id _Nullable obj, NSError *_Nullable error) {
-        NSLog(@"H5 调取原生注入方法");
+        NSLog(@"H5 调取原生注入方法, 加载app_id");
     }];
 }
 

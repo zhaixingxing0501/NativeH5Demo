@@ -12,7 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BaseWKWebViewController : UIViewController
 
 @property (nonatomic, strong) NSString *urlStr;
-
+@property (nonatomic, strong) NSString *app_id;
+@property (nonatomic, strong) NSString *secret;
 @end
 
 NS_ASSUME_NONNULL_END

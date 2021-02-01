@@ -11,6 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSString (AES)
 
+- (NSString *)AES128EncryptKey:(NSString *)key;
+
+- (NSString *)AES128DecryptKey:(NSString *)key;
+
 - (NSString *)AES256EncryptKey:(NSString *)key;
 
 - (NSString *)AES256DecryptKey:(NSString *)key;
