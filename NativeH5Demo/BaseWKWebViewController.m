@@ -94,11 +94,18 @@
 }
 
 //! WKWeView在每次加载请求前会调用此方法来确认是否进行请求跳转
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    NSString *url = navigationAction.request.URL.absoluteString;
-    NSLog(@"加载url:%@", url);
-    decisionHandler(WKNavigationActionPolicyAllow);
-}
+//- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+//    NSString *url = self.wkWebView.URL.absoluteString;
+//    NSLog(@"加载url:%@", url);
+//    decisionHandler(WKNavigationActionPolicyAllow);
+//}
+
+//- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(nonnull WKNavigationResponse *)navigationResponse decisionHandler:(nonnull void (^)(WKNavigationResponsePolicy))decisionHandler {
+//    NSString *url = self.wkWebView.URL.absoluteString;
+//    NSLog(@"加载响应url:%@", url);
+//    decisionHandler(WKNavigationResponsePolicyAllow);
+//}
+ 
 
 // MARK: - H5 向 Native 发送信息
 - (void)userContentController:(WKUserContentController *)userContentController didReceiveScriptMessage:(WKScriptMessage *)message {

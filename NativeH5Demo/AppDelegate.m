@@ -8,6 +8,8 @@
 #import "AppDelegate.h"
 #import "IQKeyboardManager.h"
 #import <WXApi.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
+
 
 @interface AppDelegate ()
 
@@ -17,7 +19,10 @@
 
 #define WX_AppId          @"wx0d9488cb305b12c6"
 #define WX_UNIVERSAL_LINK @"https://cloud.nucarf.net/"
+#define  GaoDeKey        @"e7aadf11bd1348a02b98d2e184395bbb"
 
+//zhaixingxing.NativeH5Demo
+//NucarfProject.com
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
@@ -29,6 +34,7 @@
         NSLog(@"注册失败");
     }
     
+    [AMapServices sharedServices].apiKey = GaoDeKey;
     
     
         [IQKeyboardManager sharedManager].enable = YES;

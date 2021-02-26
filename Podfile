@@ -10,6 +10,7 @@ target 'NativeH5Demo' do
   pod 'AFNetworking'
   pod 'WechatOpenSDK'
   pod 'IQKeyboardManager'
-
-
+  pod 'AMapSearch'
+#  pod 'AMap3DMap'
+ pod 'AMapLocation'
 end

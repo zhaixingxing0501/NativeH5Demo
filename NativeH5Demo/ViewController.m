@@ -10,17 +10,32 @@
 #import "BaseWKWebViewController.h"
 #import "Request/Request.h"
 #import "NSString+AES.h"
+#import "SearchViewController.h"
+#import "MapLocationManager.h"
+#import <AMapLocationKit/AMapLocationKit.h>
+#import <AMapFoundationKit/AMapFoundationKit.h>
+#import <AMapSearchKit/AMapSearchKit.h>
 
 @interface ViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *URLTextField;
-
-
+@property (strong, nonatomic) IBOutlet UITextView *URLTF;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *app_id;
 @property (nonatomic, strong) NSString *secret;
 
+@property (strong, nonatomic) IBOutlet UITextField *app_idTF;
+@property (strong, nonatomic) IBOutlet UITextField *secretTF;
+/// 经度
+@property (strong, nonatomic) IBOutlet UITextField *longitudeTF;
+/// 纬度
+@property (strong, nonatomic) IBOutlet UITextField *latitudeTF;
+@property (strong, nonatomic) IBOutlet UITextField *keyTF;
+@property (strong, nonatomic) IBOutlet UITextField *valueTF;
 
 @end
+
+NSString *kApp_id = @"app_id";
+NSString *kSecret = @"secret";
+NSString *kUrl = @"url";
 
 @implementation ViewController
 
@@ -28,8 +43,7 @@
     [super viewDidLoad];
     self.title = @"小程序调试";
     // Do any additional setup after loading the view.
-    
-    
+
 //    NSString *mobile1 = @"18222116409";
 //    NSString *keyStr1 = @"fdbab8561f7138914179b773a732e1aa";
 //    NSString *res11 = [mobile1 AES256EncryptKey:keyStr1];
@@ -39,18 +53,62 @@
 //        NSLog(@"相同");
 //    }
 //    NSString *res12 = [secret1 AES256DecryptKey:keyStr1];
-    
-    
-    self.url = @"http://tyb-qa-api.nucarf.cn/station/#/oilstation?mobile=spuDgO4vLFZCSFgXRNM4mw%3D%3D&latitude=39.85856&longitude=116.28616";
+
+    self.URLTF.text = [[NSUserDefaults standardUserDefaults] objectForKey:kUrl];
+    self.app_idTF.text = [[NSUserDefaults standardUserDefaults] objectForKey:kApp_id];
+    self.secretTF.text = [[NSUserDefaults standardUserDefaults] objectForKey:kSecret];
+//
+//    self.url = @"http://tyb-qa-api.nucarf.cn/station/#/oilstation?mobile=spuDgO4vLFZCSFgXRNM4mw%3D%3D&latitude=39.85856&longitude=116.28616";
+    self.url = @"http://tyb-qa-api.nucarf.cn/station/#/oilstation?mobile=mPGlGV0YXIBCnj76Pgl%2BaA%3D%3D&latitude=23.106111&longitude=113.379656";
+
     self.app_id = @"b371a642b6c5aa3ad0c0744462b792cf";
     self.secret = @"418efe81b1af6f342b5f12e9c5854c7a";
 
+//    self.secretTF.text = self.secret;
+//    self.app_idTF.text = self.app_id;
+//    self.URLTF.text = self.url;
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"test" style:UIBarButtonSystemItemDone target:self action:@selector(buttonAction:)];
+    self.navigationItem.leftItemsSupplementBackButton = YES;
+
+    [[MapLocationManager shareManager] startRequestLocationSuccess:^(CLLocation *location) {
+        if (location) {
+            
+//            CLLocationCoordinate2D amapcoord = AMapCoordinateConvert(CLLocationCoordinate2DMake(39.989612,116.480972), AMapCoordinateType);
+            CLLocationCoordinate2D amapcoord = AMapCoordinateConvert(location.coordinate, AMapCoordinateTypeGPS);
+            NSLog(@"%f, %f", location.coordinate.latitude, location.coordinate.longitude);
+            self.latitudeTF.text = [NSString stringWithFormat:@"%f", amapcoord.latitude];
+            self.longitudeTF.text = [NSString stringWithFormat:@"%f", amapcoord.longitude];
+        }
+    }];
 }
 
-- (IBAction)buttonAction:(UIButton *)sender {
+- (void)buttonAction:(UIButton *)sender {
 //    [self testPay];
     [self openH5];
 //    [self testOpenMiniProgram];
+}
+
+- (IBAction)locationAdd:(UIButton *)sender {
+    @try {
+        self.URLTF.text =  [self loadRequestData:self.URLTF.text andPram:@{ @"latitude": self.latitudeTF.text }];
+        self.URLTF.text = [self loadRequestData:self.URLTF.text andPram:@{ @"longitude": self.longitudeTF.text }];
+    } @catch (NSException *exception) {
+    } @finally {
+    }
+}
+
+- (IBAction)LocationSearch:(id)sender {
+    SearchViewController *vc = [SearchViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (IBAction)paramAdd:(id)sender {
+    @try {
+        self.URLTF.text =  [self loadRequestData:self.URLTF.text andPram:@{ self.keyTF.text: self.valueTF.text }];
+    } @catch (NSException *exception) {
+    } @finally {
+    }
 }
 
 - (void)testPay {
@@ -67,7 +125,7 @@
         @"payment_callback_url": @"http://tyb_ci_api_one.nucarf.cn/station/#/order/detail?action=callback",
         @"notify_url": @"1",
     };
-    
+
     [Request post:url parameters:param success:^(id _Nonnull responseObject) {
         NSString *webUrl = [responseObject[@"data"] objectForKey:@"cashier_url"];
 
@@ -105,13 +163,30 @@
 // MARK: - 跳转H5 页面
 - (IBAction)pushH5:(UIButton *)sender {
     BaseWKWebViewController *vc = [[BaseWKWebViewController alloc] init];
-    vc.urlStr = self.URLTextField.text;
+    vc.urlStr = self.URLTF.text;
+    vc.app_id = self.app_idTF.text;
+    vc.secret = self.secretTF.text;
+    [[NSUserDefaults standardUserDefaults] setObject:self.app_idTF.text forKey:kApp_id];
+    [[NSUserDefaults standardUserDefaults] setObject:self.secretTF.text forKey:kSecret];
+    [[NSUserDefaults standardUserDefaults] setObject:self.URLTF.text forKey:kUrl];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 
-    if (![self.URLTextField.text hasPrefix:@"http"]) {
+    if (![self.URLTF.text hasPrefix:@"http"]) {
         [self showMsg:@"请输入正确的请求地址"];
         return;
     }
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (NSString *)loadRequestData:(NSString *)url andPram:(NSDictionary *)dic {
+    __block NSString *temStr = @"?";
+    if ([url containsString:@"?"]) {
+        temStr = @"&";
+    }
+    [dic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        temStr = [temStr stringByAppendingString:[NSString stringWithFormat:@"%@=%@", key, obj]];
+    }];
+    return [NSString stringWithFormat:@"%@%@", url, temStr];
 }
 
 - (void)showMsg:(NSString *)msg {
